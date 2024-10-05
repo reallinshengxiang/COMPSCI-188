@@ -1,0 +1,50 @@
+class: "GraphSearchTest"
+algorithm: "aStarSearch"
+
+diagram: """
+    B           E
+   ^  \        ^  \
+  /    V      /    V
+*A --> C --> D --> F --> [G]
+
+A is the start state, G is the goal.  Arrows mark 
+possible state transitions.  This graph has multiple
+paths to the goal, but the heuristic is chosen poorly.
+This means many nodes will be expanded before aStarSearch
+has to backtrack to find the optimal solution.
+
+The heuristic value of each state is:
+	A 10.0
+	B 9.0
+	C 6.0
+	D 5.0
+	E 4.0
+	F 1.0
+	G 0.0
+"""
+# The following section specifies the search problem and the solution.
+# The graph is specified by first the set of start states, followed by
+# the set of goal states, and lastly by the state transitions which are
+# of the form: 
+#      <start state> <actions> <end state> <cost>
+graph: """
+start_state: A
+goal_states: G
+A 0:A->B B 1.0
+A 1:A->C C 3.0
+B 0:B->C C 1.0
+C 0:C->D D 1.0
+D 0:D->E E 1.0
+D 1:D->F F 3.0
+E 0:E->F F 1.0
+F 0:F->G G 10.0
+"""
+heuristic: """
+A 10.0
+B 9.0
+C 6.0
+D 5.0
+E 4.0
+F 1.0
+G 0.0
+"""
