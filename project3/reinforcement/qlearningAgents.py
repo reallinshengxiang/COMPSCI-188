@@ -80,11 +80,9 @@ class QLearningAgent(ReinforcementAgent):
           you should return None.
         """
         "*** YOUR CODE HERE ***"
-        # 计算并返回给定状态下的最佳动作
         legalActions = self.getLegalActions(state)
         if not legalActions:
             return None
-        # 初始化最大 Q 值和对应的动作列表
         maxQValue = float('-inf')
         maxActions = []
         for action in legalActions:
@@ -94,7 +92,6 @@ class QLearningAgent(ReinforcementAgent):
                 maxActions = [action]
             elif qValue == maxQValue:
                 maxActions.append(action)
-        # 如果有多个最佳动作，随机选择一个
         return random.choice(maxActions)
         util.raiseNotDefined()
 
