@@ -532,7 +532,7 @@ class Attention(Module):
         K = self.k_layer(input)
         V = self.v_layer(input)
         dot_product = torch.matmul(K, Q.transpose(-2, -1)) / (self.layer_size ** 0.5)
-        dot_product = dot_product.masked_fill(self.mask[:, :, :T, :T] == 0, float('-inf'))
+        dot_product = dot_product.masked_fill(self.mask[:, :, :T, :T] == 0, float('-inf'))[0]
         attention_weights = softmax(dot_product, dim=-1)
         output = torch.matmul(attention_weights, V)
         return output
